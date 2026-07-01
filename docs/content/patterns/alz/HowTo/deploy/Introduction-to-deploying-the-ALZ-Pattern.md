@@ -40,7 +40,14 @@ Alerts, action groups, and alert processing rules are created as follows:
 1. A Microsoft Entra ID Tenant.
 2. An ALZ Management group hierarchy deployed as outlined in the [Azure landing zone design areas and conceptual architecture](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas) documentation.
 3. At least one subscription for deploying alerts through policies.
-4. A Deployment Identity with `Owner` permissions to the pseudo root management group. This permission is necessary for the Service Principal Account to create role-based access control assignments.
+4. A user or security principal executing the deployment with necessary permissions to the pseudo root management group. These permissions are necessary for the Service Principal Account to create role-based access control assignments. Instead of assigning the `Owner` role, a least-privilege set of roles can be used, including:
+
+   - Managed Identity Contributor
+   - Monitoring Policy Contributor
+   - User Access Administrator (with condition to assign all user roles except admin roles Owner, UAA, RBAC)
+
+    </br>
+
 5. If deploying manually via Azure CLI or PowerShell, ensure [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep) is installed and configured. Refer to the configuration guides for [Azure CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#azure-cli) and [PowerShell](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#azure-powershell).
 6. The following Azure resource providers must be registered on all subscriptions in scope for the policies to function correctly:
 
@@ -62,7 +69,14 @@ Alerts, action groups, and alert processing rules are created as follows:
 
 1. A Microsoft Entra ID Tenant.
 2. At least one active Azure subscription for deploying alerts through policies.
-3. A Deployment Identity with `Owner` permissions on the given subscription. This permission is necessary for the Service Principal Account to create role-based access control assignments.
+3. A user or security principal executing the deployment with necessary permissions to the given subscription. These permissions are necessary for the Service Principal Account to create role-based access control assignments. Instead of assigning the `Owner` role, a least-privilege set of roles can be used, including:
+
+   - Managed Identity Contributor
+   - Monitoring Policy Contributor
+   - User Access Administrator (with condition to assign all user roles except admin roles Owner, UAA, RBAC)
+
+    </br>
+
 4. If deploying manually via Azure CLI or PowerShell, ensure [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep) is installed and configured. Refer to the configuration guides for [Azure CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#azure-cli) and [PowerShell](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#azure-powershell).
 5. The following Azure resource providers must be registered on all subscriptions in scope for the policies to function correctly:
 
@@ -102,8 +116,9 @@ The initiatives in this repository are designed to align with the management gro
 - Identity Initiative is assigned to the Identity management group.
 - Management Initiative is assigned to the Management management group.
 - Connectivity Initiative is assigned to the Connectivity management group.
+- Azure VMSS Initiative is assigned to both Platform and Landing Zones management groups.
 - Azure VM Initiative is assigned to both Platform and Landing Zones management groups.
-- Hybrid VM Initiative is assigned to both Platform and Landing Zones management groups.
+- Arc-enabled server Initiative is assigned to both Platform and Landing Zones management groups.
 - Key Management Initiative is assigned to the Landing Zones management group.
 - Load Balancing Initiative is assigned to the Landing Zones management group.
 - Network Changes Initiative is assigned to the Landing Zones management group.
@@ -120,7 +135,7 @@ The following diagram illustrates the flow of policy initiatives and their assoc
 
 The other monitoring initiatives are assigned to specific platform landing zone management groups and workload landing zones. These flows are represented by blue dashed lines.
 
-![Azure Monitor Baseline Alerts policy initiative flows](../../../media/azure-monitor-baseline-alerts-policy-initiative-flow.svg)
+![Azure Monitor Baseline Alerts policy initiative flows](../../../media/azure-monitor-baseline-alerts-policy-initiative-flow.png)
 
 *Download a [Visio file](../../../media/AMBA-Diagrams.vsdx) of this architecture.*
 
@@ -147,8 +162,9 @@ In scenarios where Identity, Management, and Connectivity are combined into a si
 - Identity Initiative is assigned to the Platform management group.
 - Management Initiative is assigned to the Platform management group.
 - Connectivity Initiative is assigned to the Platform management group.
+- Azure VMSS Initiative is assigned to both Platform and Geography management groups.
 - Azure VM Initiative is assigned to both Platform and Geography management groups.
-- Hybrid VM Initiative is assigned to both Platform and Geography management groups.
+- Arc-enabled server Initiative is assigned to both Platform and Geography management groups.
 - Key Management Initiative is assigned to the Geography management group.
 - Load Balancing Initiative is assigned to the Geography management group.
 - Network Changes Initiative is assigned to the Geography management group.
@@ -185,7 +201,7 @@ If you have adopted the recommended management group design, you can proceed dir
 
 If you have implemented a single management group, it is recommended to move your production subscriptions into that management group. For guidance on adding subscriptions, refer to the [official documentation](https://learn.microsoft.com/en-us/azure/governance/management-groups/manage#add-an-existing-subscription-to-a-management-group-in-the-portal).
 
-> [!importnat]
+> [!important]
 > To avoid generating unnecessary alerts, it is advisable to place development, sandbox, and other non-production subscriptions in a separate management group or under the tenant root group.
 
 The following image illustrates an example of how the assignments appear when utilizing a single management group.
@@ -201,8 +217,9 @@ Cloud Solution Provider (CSP) or Azure Lighthouse access works at subscription l
 - Identity Initiative.
 - Management Initiative.
 - Connectivity Initiative.
+- Azure VMSS Initiative.
 - Azure VM Initiative.
-- Hybrid VM Initiative.
+- Arc-enabled server Initiative.
 - Key Management Initiative.
 - Load Balancing Initiative.
 - Network Changes Initiative.
@@ -273,7 +290,7 @@ To modify settings that are not parameterized, follow these steps:
     `bicep build .\patterns\alz\templates\policySets.bicep --outfile .\patterns\alz\policyDefinitions\policySets.json` </br>
 
     > [!note]
-    > Updating the policies for the ***Cloud Solution Provider (CSP) or Azure Lighthouse*** scenario, requires the additional execution of a conversion script after the  policy rebuilt as per the instructions above. The script, called **Generate-AMBA-ALZ-4Subs.ps1**, is located in the `tooling\ALZ` folder.
+    > Updating the policies for the ***Cloud Solution Provider (CSP) or Azure Lighthouse*** scenario, requires the additional execution of a conversion script after the  policy rebuilt as per the instructions above (that should be executed ***withouth*** changing the output path). The script, called **Generate-AMBA-ALZ-4Subs.ps1**, is located in the `tooling\ALZ` folder.
     > The script does not require any parameter and can be executed from the root folder of your fork using this command `.\tooling\ALZ\Generate-AMBA-ALZ-4Subs.ps1`
 
 4. Commit and synchronize the changes to your fork.

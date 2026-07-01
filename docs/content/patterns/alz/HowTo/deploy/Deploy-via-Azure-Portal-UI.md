@@ -5,11 +5,16 @@ weight: 30
 
 ### In this page
 
+> [Prerequisites](#prerequisites) </br>
 > [Access the AMBA-ALZ Portal Accelerator](#access-the-amba-alz-portal-accelerator) </br>
 > [Deployment Settings Blade](#deployment-settings-blade) </br>
 > [Management Groups / Subscription Settings Blade](#management-groups--subscription-settings-blade) </br>
 > [Notification Settings Blade](#notification-settings-blade) </br>
 > [Next Steps](#next-steps) </br>
+
+## Prerequisites
+
+Deploying AMA-ALZ requires some prerequisites and configuration to be completed upfront for both _**Management Group (hierarchy or single)**_ and _**Cloud Solution Provider (CSP) or Azure Lighthouse**_. Ensure all the necessary prerequisites, listed for the respective section in the [Prerequisites](./Introduction-to-deploying-the-ALZ-Pattern#prerequisites) page are in place.
 
 ## Access the AMBA-ALZ Portal Accelerator
 
@@ -102,7 +107,7 @@ In the Management Groups Settings blade, change the value of the policy set defi
 - Change the value of _`Enable AMBA Connectivity`_ to _`Yes`_. This initiative deploys Azure Monitor Baseline Alerts to monitor Network components such as Azure Firewalls, ExpressRoute, VPN, and Private DNS Zones.
 - Change the value of _`Enable AMBA Identity`_ to _`Yes`_. This initiative deploys Azure Monitor Baseline Alerts to monitor Identity services such as Key Vaults, Managed HSMs.
 - Change the value of _`Enable AMBA Management`_ to _`Yes`_. This initiative deploys Azure Monitor Baseline Alerts to monitor Management services such as Log Analytics Workspaces, Storage Accounts, Automation Accounts.
-- Change the value of _`Enable AMBA Hybrid VM`_ to _`Yes`_ This initiative deploys Azure Monitor Baseline Alerts to monitor Azure Arc-enabled Servers.
+- Change the value of _`Enable AMBA Arc-enabled server`_ to _`Yes`_ This initiative deploys Azure Monitor Baseline Alerts to monitor Azure Arc-enabled servers.
 - Change the value of _`Enable AMBA Azure VM`_ to _`Yes`_ This initiative deploys Azure Monitor Baseline Alerts to monitor Azure Virtual Machines.
 - Change the value of _`Enable AMBA Key Management`_ to _`Yes`_ This initiative deploys Azure Monitor Baseline Alerts to monitor Key Management Services such as Azure Key Vault, and Managed HSM.
 - Change the value of _`Enable AMBA Load Balancing`_ to _`Yes`_ This initiative deploys Azure Monitor Baseline Alerts to monitor Load Balancing Services such as Load Balancer, Application Gateway, Traffic Manager, and Azure Front Door.
@@ -161,7 +166,7 @@ In the Subscription Settings blade, change the value of the policy set definitio
 - Change the value of _`Enable AMBA Connectivity`_ to _`Yes`_. This initiative deploys Azure Monitor Baseline Alerts to monitor Network components such as Azure Firewalls, ExpressRoute, VPN, and Private DNS Zones.
 - Change the value of _`Enable AMBA Identity`_ to _`Yes`_. This initiative deploys Azure Monitor Baseline Alerts to monitor Identity services such as Key Vaults, Managed HSMs.
 - Change the value of _`Enable AMBA Management`_ to _`Yes`_. This initiative deploys Azure Monitor Baseline Alerts to monitor Management services such as Log Analytics Workspaces, Storage Accounts, Automation Accounts.
-- Change the value of _`Enable AMBA Hybrid VM`_ to _`Yes`_ This initiative deploys Azure Monitor Baseline Alerts to monitor Azure Arc-enabled Servers.
+- Change the value of _`Enable AMBA Arc-enabled server`_ to _`Yes`_ This initiative deploys Azure Monitor Baseline Alerts to monitor Azure Arc-enabled servers.
 - Change the value of _`Enable AMBA Azure VM`_ to _`Yes`_ This initiative deploys Azure Monitor Baseline Alerts to monitor Azure Virtual Machines.
 - Change the value of _`Enable AMBA Key Management`_ to _`Yes`_ This initiative deploys Azure Monitor Baseline Alerts to monitor Key Management Services such as Azure Key Vault, and Managed HSM.
 - Change the value of _`Enable AMBA Load Balancing`_ to _`Yes`_ This initiative deploys Azure Monitor Baseline Alerts to monitor Load Balancing Services such as Load Balancer, Application Gateway, Traffic Manager, and Azure Front Door.

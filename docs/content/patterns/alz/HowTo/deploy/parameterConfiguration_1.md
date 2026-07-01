@@ -8,7 +8,7 @@ To begin, download the appropriate parameter file for the version of AMBA-ALZ yo
   > [!note]
   > Forking or cloning the repository isn’t required for the deployment, unless you have customized the policies as described in [How to modify individual policies](../Introduction-to-deploying-the-ALZ-Pattern#how-to-modify-individual-policies)
 
-- [alzArm.param.json](https://github.com/azure/azure-monitor-baseline-alerts/blob/2026-03-06/patterns/alz/alzArm.param.json) for the latest release.
+- [alzArm.param.json](https://github.com/azure/azure-monitor-baseline-alerts/blob/2026-06-03/patterns/alz/alzArm.param.json) for the latest release.
 - [alzArm.param.json](https://github.com/azure/azure-monitor-baseline-alerts/blob/main/patterns/alz/alzArm.param.json) for the main branch.
 
 The following instructions apply universally, regardless of your alignment with ALZ or if you have a single management group. Modify the values of the following parameters at the beginning of the parameter file as per the following instructions:
@@ -24,6 +24,7 @@ The following instructions apply universally, regardless of your alignment with 
 - Set the _```ALZMonitorResourceGroupName```_ parameter to the name of the resource group where activity logs, resource health alerts, action groups, and alert processing rules will be deployed.
 - Update the _```ALZMonitorResourceGroupTags```_ parameter to specify the tags to be added to the resource group.
 - Set the _```ALZMonitorResourceGroupLocation```_ parameter to specify the location of the resource group.
+- Check the value of _```includeAlzAlertsOnly```_ parameter: default value is ***Yes*** meaning that only alerts generaed by the AMBA-ALZ alert rules will be notified. Change its value to ***No*** to notify all alerts from all alert rules existing in the subscription (AMBA-ALZ and not).
 - Update the _```ALZMonitorActionGroupEmail```_ parameter with the email address(es) for alert notifications (including Service Health alerts). Leave it blank if no email notification is required or if existing customer-owned action group(s) should be used (see [Bring Your Own Notifications](../../Bring-your-own-Notifications)).
 - Set the _```ALZLogicappResourceId```_ parameter to the Logic App resource ID to be used for alert actions (including Service Health alerts). Leave it blank if no Logic App is used or if existing customer-owned action group(s) should be used (see [Bring Your Own Notifications](../../Bring-your-own-Notifications)). To retrieve the Logic App resource ID, navigate to the resource, in the _**Overview**_ panel click on _**JSON View**_ and copy the value of the Resource ID field.
 

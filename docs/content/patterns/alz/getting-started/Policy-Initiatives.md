@@ -13,7 +13,8 @@ weight: 40
 > [Management Initiative](#management-initiative) </br>
 > [Identity Initiative](#identity-initiative) </br>
 > [Azure VM Initiative](#azure-vm-initiative) </br>
-> [Hybrid VM Initiative](#hybrid-vm-initiative) </br>
+> [Azure VM Scale Sets](#azure-vmss-initiative) </br>
+> [Arc-enabled server VM Initiative](#arc-enabled server-initiative) </br>
 > [Key Management Initiative](#key-management-initiative) </br>
 > [Load Balancing Initiative](#load-balancing-initiative) </br>
 > [Network Changes Initiative](#network-changes-initiative) </br>
@@ -68,13 +69,19 @@ This initiative is intended for relevant policy assignment to identity component
 
 ## Azure VM initiative
 
-This initiative deploys Azure Monitor Baseline Alerts to monitor Azure Virtual Machines. Using the guidance provided in [Introduction to deploying the AMBA-ALZ Pattern](../../HowTo/deploy/Introduction-to-deploying-the-ALZ-Pattern) this will be assigned to the Landing Zones management group in the ALZ reference architecture or to the target subscription in case of CSP or Azure Lighthouse scenarios. For details on the initiative policies and their default enablement state, refer to the table below.
+This initiative deploys Azure Monitor Baseline Alerts to monitor Azure Virtual Machines. Using the guidance provided in [Introduction to deploying the AMBA-ALZ Pattern](../../HowTo/deploy/Introduction-to-deploying-the-ALZ-Pattern) this will be assigned to both the Platform and Landing Zones management groups in the ALZ reference architecture or to the target subscription in case of CSP or Azure Lighthouse scenarios. For details on the initiative policies and their default enablement state, refer to the table below.
 
 {{% include "Alerting-VM-PolicyInitiative-Table" %}}
 
-## Hybrid VM initiative
+## Azure VMSS initiative
 
-This initiative is intended for relevant policy assignment to Hybrid VM alerts in AMBA-ALZ. Using the guidance provided in [Introduction to deploying the AMBA-ALZ Pattern](../../HowTo/deploy/Introduction-to-deploying-the-ALZ-Pattern), this will be assigned to the 'alz' intermediate root management group structure in the ALZ reference architecture or to the target subscription in case of CSP or Azure Lighthouse scenarios. For details on the initiative policies and their default enablement state, refer to the table below.
+This initiative deploys Azure Monitor Baseline Alerts to monitor Azure Virtual Machine Scale Sets. It is limited to Virtual Machine Scale Sets configured with ***Flexible*** orchestration mode *only*. Using the guidance provided in [Introduction to deploying the AMBA-ALZ Pattern](../../HowTo/deploy/Introduction-to-deploying-the-ALZ-Pattern) this will be assigned to both the Platform and Landing Zones management groups in the ALZ reference architecture or to the target subscription in case of CSP or Azure Lighthouse scenarios. For details on the initiative policies and their default enablement state, refer to the table below.
+
+{{% include "Alerting-VMSS-PolicyInitiative-Table" %}}
+
+## Arc-enabled server initiative
+
+This initiative is intended for relevant policy assignment to Arc-enabled server alerts in AMBA-ALZ. Using the guidance provided in [Introduction to deploying the AMBA-ALZ Pattern](../../HowTo/deploy/Introduction-to-deploying-the-ALZ-Pattern), this will be assigned to both the Platform and Landing Zones management groups in the ALZ reference architecture or to the target subscription in case of CSP or Azure Lighthouse scenarios. For details on the initiative policies and their default enablement state, refer to the table below.
 
 {{% include "Alerting-HybridVM-PolicyInitiative-Table" %}}
 
